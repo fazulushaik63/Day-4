@@ -1,0 +1,71 @@
+# Day-4
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct book{
+    char title[100];
+    char aurthor[100];
+    int isbn;
+    float price;
+};
+struct book library[100];
+int num_books=0;
+void add_book(){
+    if (num_books>=100){
+        printf("sorry, the library is full.\n");
+        return;
+    }
+    printf("enter book title:");
+    scanf("%s",library[num_books].title);
+    printf("enter aurthor name:");
+    scanf("%s",library[num_books].aurthor);
+    printf("enter ISBN number:");
+    scanf("%d",&library[num_books].isbn);
+    printf("enter price:");
+    scanf("%f",&library[num_books].price);
+    num_books++;
+    printf("Book is added to library.\n");\
+    
+}
+void display_book(struct book b){
+    printf("%s by %s (ISBN:%d , price:%.2f)\n",b.title,b.aurthor,b.isbn,b.price);
+}
+void display_books(){
+    if (num_books==0){
+        printf("The library is empty.\n");
+        return;
+    }
+    int i;
+    printf("library contents:\n");
+    for (i=0;i<num_books;i++){
+        display_book(library[i]);
+    }
+    return;
+}
+int main(){
+    int choice;
+    do{
+        printf("\nLibrary menu:\n");
+        printf("1.Add book\n");
+        printf("2.Display all books\n");
+        printf("3.Exit\n");
+        printf("Enter choice:");
+        scanf("%d",&choice);
+        switch (choice){
+            case 1:
+            add_book();
+            break;
+            case 2:
+            display_books();
+            break;
+            case 3:
+            printf("Existing library system.\n");
+            break;
+            default:
+            printf("invalid choice.please try again.\n");
+        }
+    }while(choice !=3);
+    return 0;
+
+}
